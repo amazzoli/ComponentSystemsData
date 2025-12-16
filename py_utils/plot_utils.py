@@ -12,7 +12,26 @@ def plot_sorted_bar(ax, series, n_classes='all', **bar_kwargs):
     series.plot(kind='bar', ax=ax, **bar_kwargs)
     ax.set_xlabel('')
     return ax
-
+        
+    
+def plot_count_hist_nobin(ax, values, xlabel='', ylabel='', loglog=True, **scatter_kwargs):
+    """
+    Plotting a histogram of counts of repeating elements in "values" without binning. 
+    The x-axis are the integer values.
+    """
+    uni_c, count_c = np.unique(values, return_counts=True)
+    if loglog:
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+    if xlabel != '':
+        ax.set_xlabel(xlabel, fontsize=12)
+    if ylabel != '':
+          ax.set_ylabel(ylabel, fontsize=12)
+    ax.scatter(uni_c, count_c, **scatter_kwargs)
+    return ax
+    
+    
+### AUXILIARY FUNCTIONS
 
 def _sort_and_clamp_series(series, n_classes='all'):
     series = series.sort_values(ascending=False)
