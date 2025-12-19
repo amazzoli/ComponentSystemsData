@@ -49,9 +49,9 @@ def plot_count_hist_nobin(ax, values, xlabel='', ylabel='', loglog=True, **scatt
 
 def _sort_and_clamp_series(series, n_classes='all'):
     series = series.sort_values(ascending=False)
-    if type(n_classes) == int:
+    if type(n_classes) == int and len(series) < n_classes:
         counts_left = np.sum(series.iloc[n_classes:])
         n_class_left = len(series.iloc[n_classes:])
         series = series.iloc[:n_classes]
-        series['other '+str(n_classes)+' classes'] = counts_left
+        series['other '+str(len(series) - n_classes)+' classes'] = counts_left
     return series

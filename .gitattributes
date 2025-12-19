@@ -1,1 +1,2 @@
 datasets/proteomes/data/count_sparse.zip filter=lfs diff=lfs merge=lfs -text
+datasets/books/data/count_sparse.zip filter=lfs diff=lfs merge=lfs -text
