@@ -1,4 +1,4 @@
-label	description	n_objects	n_components	total_size
-legos	Lego sets and their composition in colored bricks of rebrickable.com	33530	91248	4218346
-proteomes	Bacterial genomes and their composition in protein families from UniProt	8346	14693	38554091
-books	Books downloaded from the Gutenberg Project	3035	447232	211892492
+label	category	n_objects	n_components	total_size	description	link
+books_gutenberg	Linguistics	3035	447232	211892492	Books from the Gutenberg Project	https://www.gutenberg.org/
+legos	Buildings	33530	91248	4218346	Lego sets and their composition in colored bricks	https://rebrickable.com/
+proteomes_bacteria	Proteomes	8346	14693	38554091	Bacterial genomes and their composition in protein families (Pfam)	https://www.uniprot.org/
