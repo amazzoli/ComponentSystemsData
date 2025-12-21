@@ -1,1 +1,3 @@
-Lego sets and their composition in colored bricks of rebrickable.com
+Category	Buildings
+Description	Lego sets and their composition in colored bricks
+Link	https://rebrickable.com/
