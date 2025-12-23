@@ -36,6 +36,28 @@ class ComponentSystem(object):
     return '"' + self.label + '" component-system with ' + str(len(self.objects)) + " objects and "  + str(len(self.components)) + " components."
     
     
+  def comps_in_obj(self, obj_id):
+    """
+    Returns the table of the components in the object id
+    """
+    obj_array = self.sparse_mat[:,obj_id].toarray().T[0]
+    obj_comps = np.where(obj_array > 0)[0]
+    obj_comp_table = self.components.loc[obj_comps].drop(['abundance', 'occurrence'], axis=1)
+    obj_comp_table['count'] = obj_array[obj_comps]
+    return obj_comp_table.sort_values('count', ascending=False).copy()
+
+
+  def objs_of_comp(self, comp_id):
+    """
+    Returns the table of the objects in which the component is present
+    """
+    comp_array = self.sparse_mat[comp_id].toarray()[0]
+    comp_objs = np.where(comp_array > 0)[0]
+    comp_obj_table = self.objects.loc[comp_objs].drop(['size', 'vocabulary'], axis=1)
+    comp_obj_table['count'] = comp_array[comp_objs]
+    return comp_obj_table.sort_values('count', ascending=False).copy()
+
+
   def check_consistency(self):
     """
     Check if the identifiers and the summation of rows and columns in the objects
@@ -111,4 +133,5 @@ def load_system(label, repo_folder='/content/ComponentSystemsData/'):
   count_sparse = pd.read_csv(repo_folder + data_folder + 'count_sparse.zip', sep='\t', compression='zip')
 
   return ComponentSystem(label, objects, components, count_sparse)
+
 
