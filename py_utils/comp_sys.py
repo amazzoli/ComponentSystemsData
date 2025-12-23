@@ -10,14 +10,15 @@ class ComponentSystem(object):
   main statistical properties
   """
 
-  def __init__(self, objects, components, count_sparse, check_consistency=False):
+  def __init__(self, label, objects, components, count_sparse, check_consistency=False):
     """
     Args:
     - objects: pandas table with the list of objects.
     - components: pandas table with the list of components.
     - sparse_counts: pandas table with the sparse counts (i,j,n coordinate form).
     """
-
+    
+    self.label = label
     self.objects = objects
     self.components = components
 
@@ -31,6 +32,10 @@ class ComponentSystem(object):
       self.check_consistency()
 
 
+  def __str__(self):
+    return self.label " component system with " + str(len(self.objects)) + " objects and "  + str(len(self.components)) + " components."
+    
+    
   def check_consistency(self):
     """
     Check if the identifiers and the summation of rows and columns in the objects
@@ -75,6 +80,8 @@ class ComponentSystem(object):
       print('The tables are consistent')
 
 
+
+
 def read_metadata(repo_folder='/content/ComponentSystemsData/'):
   """
   Return a pandas table with the metadata of the datasets. The repo_folder is
@@ -83,6 +90,7 @@ def read_metadata(repo_folder='/content/ComponentSystemsData/'):
   """
 
   return pd.read_csv(repo_folder + 'metadata.tsv', sep='\t', index_col=0)
+
 
 
 def load_system(label, repo_folder='/content/ComponentSystemsData/'):
@@ -102,4 +110,4 @@ def load_system(label, repo_folder='/content/ComponentSystemsData/'):
   components = pd.read_csv(repo_folder + data_folder + 'components.tsv', sep='\t', index_col=0)
   count_sparse = pd.read_csv(repo_folder + data_folder + 'count_sparse.zip', sep='\t', compression='zip')
 
-  return ComponentSystem(objects, components, count_sparse)
+  return ComponentSystem(label, objects, components, count_sparse)
