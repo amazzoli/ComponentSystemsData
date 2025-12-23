@@ -33,7 +33,7 @@ class ComponentSystem(object):
 
 
   def __str__(self):
-    return self.label " component system with " + str(len(self.objects)) + " objects and "  + str(len(self.components)) + " components."
+    return '"' + self.label + '" component-system with ' + str(len(self.objects)) + " objects and "  + str(len(self.components)) + " components."
     
     
   def check_consistency(self):
@@ -111,3 +111,4 @@ def load_system(label, repo_folder='/content/ComponentSystemsData/'):
   count_sparse = pd.read_csv(repo_folder + data_folder + 'count_sparse.zip', sep='\t', compression='zip')
 
   return ComponentSystem(label, objects, components, count_sparse)
+
