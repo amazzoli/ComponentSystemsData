@@ -1,3 +1,2 @@
-datasets/proteomes/data/count_sparse.zip filter=lfs diff=lfs merge=lfs -text
-datasets/books_gutenberg/data/count_sparse.zip filter=lfs diff=lfs merge=lfs -text
+*count_sparse.zip filter=lfs diff=lfs merge=lfs -text
 *sequences.zip filter=lfs diff=lfs merge=lfs -text
